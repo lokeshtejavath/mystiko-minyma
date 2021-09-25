@@ -1,2 +1,1 @@
-# mystiko-minyma
-Image Steganography Service
+# react-play
