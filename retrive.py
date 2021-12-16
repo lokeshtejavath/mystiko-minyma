@@ -1,9 +1,10 @@
 import converter
 import cv2
+import base64
 
 class Retrive:
 
-    def retriver(self, key: str, image: str):
+    def retriver(self, key: str, image: str, basekey: str):
         initaliser = int(key[0:3])
         img = cv2.imread(image)
         shapex = img.shape[0]
@@ -61,4 +62,10 @@ class Retrive:
         ans = ""
         for i in currentKey:
             ans += chr(i)
-        print("message:" + ans)
+        dec = []
+        enc = base64.urlsafe_b64decode(ans).decode()
+        for i in range(len(enc)):
+            key_c = basekey[i % len(basekey)]
+            dec_c = chr((256 + ord(enc[i] - ord(key_c)))%256)
+            dec.append(dec_c)
+        print("message:" + "".join(dec))

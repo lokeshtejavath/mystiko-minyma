@@ -2,17 +2,25 @@ import converter
 import random as rand
 import cv2
 import imgerror
+import base64
 
 
 class Inserter:
 
-    def insert(self, message: str, key: str, image, name: str):
+    def insert(self, message: str, key: str, image, name: str, basekey: str):
         initaliser = int(key[0:3])
 
         img = cv2.imread(image)
         shapex = img.shape[0]
         shapey = img.shape[1]
         x, y = 0, 0
+
+        enc = []
+        for i in range(len(message)):
+            key_c = basekey[i % len(basekey)]
+            enc_c = chr((ord(message[i] + ord(key_c))) % 256)
+            enc.append(enc_c)
+        message = base64.urlsafe_b64encode("".join(enc).encode()).decode()
 
         if shapex * shapey <= (12 * len(message)):
             raise imgerror.imagenNotEnough()

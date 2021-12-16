@@ -7,4 +7,4 @@ key = randstring.randstring()
 # print(key)
 key = "098oinKJkT2CjFd8bvdN6kFLwYDM"
 r = retrive.Retrive()
-r.retriver(key, "./out.png")
+r.retriver(key, "./out.png", " ")
