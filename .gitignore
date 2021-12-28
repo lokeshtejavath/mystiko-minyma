@@ -146,4 +146,3 @@ cython_debug/
 *.jpg
 *.png
 *.jpeg
-play.py

@@ -66,6 +66,6 @@ class Retrive:
         enc = base64.urlsafe_b64decode(ans).decode()
         for i in range(len(enc)):
             key_c = basekey[i % len(basekey)]
-            dec_c = chr((256 + ord(enc[i]) - ord(key_c))%256)
+            dec_c = chr((256 + ord(enc[i] - ord(key_c)))%256)
             dec.append(dec_c)
         print("message:" + "".join(dec))

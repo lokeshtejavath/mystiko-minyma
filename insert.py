@@ -18,7 +18,7 @@ class Inserter:
         enc = []
         for i in range(len(message)):
             key_c = basekey[i % len(basekey)]
-            enc_c = chr((ord(message[i]) + ord(key_c)) % 256)
+            enc_c = chr((ord(message[i] + ord(key_c))) % 256)
             enc.append(enc_c)
         message = base64.urlsafe_b64encode("".join(enc).encode()).decode()
 
