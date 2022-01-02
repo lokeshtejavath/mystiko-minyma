@@ -1,5 +1,7 @@
 import base64
+
 import cv2
+
 import converter
 
 
@@ -69,4 +71,4 @@ class Retrive:
             key_c = basekey[i % len(basekey)]
             dec_c = chr((256 + ord(enc[i]) - ord(key_c)) % 256)
             dec.append(dec_c)
-        print("message:" + "".join(dec))
+        return "".join(dec)
