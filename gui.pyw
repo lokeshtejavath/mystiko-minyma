@@ -1,6 +1,6 @@
 import tkinter
 from tkinter import filedialog, ttk
-from tkinter.constants import ANCHOR, LEFT, RIGHT
+from tkinter.constants import LEFT, RIGHT
 
 import insert
 import randstring
@@ -57,7 +57,7 @@ def telling():
     savenanme = filedialog.asksaveasfile(mode="w", defaultextension="*.png")
     i.insert(mess, key, fileName, savenanme.name, basekey)
     ttk.Label(tell, text="Oursecrect", justify=LEFT).grid(column=0, row=4, padx=0)
-    copy = tkinter.Button(tell, text=key, command=lambda: copyToKeyboard(key)).grid(column=1, row=4, padx=xpad, pady=ypad)
+    copy = ttk.Button(tell, text=key, command=lambda: copyToKeyboard(key)).grid(column=1, row=4, padx=xpad, pady=ypad)
 
 
 def listening():
@@ -66,7 +66,7 @@ def listening():
     r = retrive.Retrive()
     mess = r.retriver(ran, fileName, basekey)
     ttk.Label(listen, text="Our not so little secrect", justify=LEFT).grid(column=0, row=4, padx=0)
-    copy = tkinter.Button(listen, text=mess, command=lambda: copyToKeyboard(mess)).grid(column=1, row=4, padx=xpad, pady=ypad)
+    copy = ttk.Button(listen, text=mess, command=lambda: copyToKeyboard(mess)).grid(column=1, row=4, padx=xpad, pady=ypad)
 
 
 tabControl.add(tell, text="légo")
@@ -75,17 +75,17 @@ tabControl.pack(expand=1, fill="both")
 ttk.Label(tell, text="Where do we express the deepest secrets", justify=RIGHT).grid(column=0, row=0)
 tellButton = ttk.Button(tell, text="open file", command=lambda: open_file()).grid(column=1, row=0, padx=xpad, pady=ypad)
 ttk.Label(tell, text="Were we express the deepest secrets", justify=LEFT).grid(column=0, row=1, padx=0)
-messageString = tkinter.Entry(tell, textvariable=message_var).grid(column=1, row=1, padx=xpad, pady=ypad)
+messageString = ttk.Entry(tell, textvariable=message_var).grid(column=1, row=1, padx=xpad, pady=ypad)
 ttk.Label(tell, text="Say the magical keys", justify=RIGHT, anchor="e").grid(column=0, row=2)
-messageString = tkinter.Entry(tell, textvariable=key_var).grid(column=1, row=2, padx=xpad, pady=ypad)
-letsTell = tkinter.Button(tell, text="Let's Tell", command=lambda: telling()).grid(column=0, row=3, padx=xpad, pady=ypad)
+messageString = ttk.Entry(tell, textvariable=key_var).grid(column=1, row=2, padx=xpad, pady=ypad)
+letsTell = ttk.Button(tell, text="Let's Tell", command=lambda: telling()).grid(column=0, row=3, padx=xpad, pady=ypad)
 
 ttk.Label(listen, text="here lies ones deepest secrects").grid(column=0, row=0)
 listenButton = ttk.Button(listen, text="open file", command=lambda: open_file()).grid(column=1, row=0, padx=xpad, pady=ypad)
 ttk.Label(listen, text="Were we express the deepest keys", justify=LEFT).grid(column=0, row=1, padx=0)
-messageString = tkinter.Entry(listen, textvariable=ran_var).grid(column=1, row=1, padx=xpad, pady=ypad)
+messageString = ttk.Entry(listen, textvariable=ran_var).grid(column=1, row=1, padx=xpad, pady=ypad)
 ttk.Label(listen, text="Say the magical keys", justify=RIGHT, anchor="e").grid(column=0, row=2)
-messageString = tkinter.Entry(listen, textvariable=key_var).grid(column=1, row=2, padx=xpad, pady=ypad)
-letsTell = tkinter.Button(listen, text="Let's Tell", command=lambda: listening()).grid(column=0, row=3, padx=xpad, pady=ypad)
+messageString = ttk.Entry(listen, textvariable=key_var).grid(column=1, row=2, padx=xpad, pady=ypad)
+letsTell = ttk.Button(listen, text="Let's Tell", command=lambda: listening()).grid(column=0, row=3, padx=xpad, pady=ypad)
 
 root.mainloop()
