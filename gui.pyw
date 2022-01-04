@@ -54,7 +54,7 @@ def telling():
     key = randstring.randstring()
     basekey = key_var.get()
     i = insert.Inserter()
-    savenanme = filedialog.asksaveasfile(mode="w", defaultextension="*.png")
+    savenanme = filedialog.asksaveasfile(mode="w", defaultextension=[("PNG", "*.png")], filetypes=[("PNG", "*.png")])
     i.insert(mess, key, fileName, savenanme.name, basekey)
     ttk.Label(tell, text="Oursecrect", justify=LEFT).grid(column=0, row=4, padx=0)
     copy = ttk.Button(tell, text=key, command=lambda: copyToKeyboard(key)).grid(column=1, row=4, padx=xpad, pady=ypad)
@@ -86,6 +86,6 @@ ttk.Label(listen, text="Were we express the deepest keys", justify=LEFT).grid(co
 messageString = ttk.Entry(listen, textvariable=ran_var).grid(column=1, row=1, padx=xpad, pady=ypad)
 ttk.Label(listen, text="Say the magical keys", justify=RIGHT, anchor="e").grid(column=0, row=2)
 messageString = ttk.Entry(listen, textvariable=key_var).grid(column=1, row=2, padx=xpad, pady=ypad)
-letsTell = ttk.Button(listen, text="Let's Tell", command=lambda: listening()).grid(column=0, row=3, padx=xpad, pady=ypad)
+letsTell = ttk.Button(listen, text="Let's Listen", command=lambda: listening()).grid(column=0, row=3, padx=xpad, pady=ypad)
 
 root.mainloop()
