@@ -31,7 +31,7 @@ The GUI is divided into two tabs.
 <br>
 Akoúo translates to `to tell` in Greek.
 <br>
-- The second tab is for decoding (```légo```) 
+- The second tab is for decoding (`légo`) 
 <br>
 légo translates to `to listen` in Greek.
 
