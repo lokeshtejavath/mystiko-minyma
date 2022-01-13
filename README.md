@@ -42,17 +42,17 @@ légo translates to `to listen` in Greek.
 - Step 2: Enter the message to be encoded, using the ```Message``` text box(First text box).
 - Step 3: Enter the key to be used for encoding, using the ```Key``` text box(Second text box).
 - Step 4: Click the ```Let's Tell``` button to start encoding. This opens a new window of file explorer to save the encoded image.
-<br>
+
 *Note: The encoded image is saved can only be saved as PNG(*.png) file because of compression in other file formats at save.*
 - Step 5: Click the button which has 28 character key which is used for encoding the message to copy the key to the clipboard.
-<br>
+
 _This completes the encoding process._
 ### Decoding
 - Step 1: Select the image file to be decoded, using the ```Open File``` button. Supported files are PNG(*.png).
 - Step 2: Enter the previously generated 28 Character key to be used for decoding, using the ```Gernerated Key``` text box(First text box).
 - Step 3: Enter the user key to be used for decoding, using the ```User Key``` text box(Second text box).
 - Step 4: Click the ```Let's Listen``` button to start decoding. If the decryption is successful, the decoded message is displayed in the ```Message``` Button. Which on click copies the message to the clipboard.
-<br>
+
 _This completes the decoding process._
 
 # CLI for Mystiko-Minyma
