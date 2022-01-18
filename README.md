@@ -76,6 +76,7 @@ Flag | Default | Description
 -----------|----------------|------------
 `-b`  `--base` | `GodOfMischief` | The base user key to be used for encoding.
 `-o`  `--output` | `minyma.png` | The output file to be encoded.
+`-c` `--copy` |`True`| Copies key to clipboard. <br/>  _```--no-copy``` to disable copying._
 
 ### Example
 ```shell 
@@ -97,6 +98,7 @@ Flag | Description
 Flag | Default | Description
 -----------|----------------|------------
 `-b`  `--base` | `GodOfMischief` | The base user key to be used for decoding.
+`-c` `--copy` |`True`| Copies Message to clipboard. <br/>  _```--no-copy``` to disable copying._
 
 ### Example
 ```shell
