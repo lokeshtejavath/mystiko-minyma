@@ -16,9 +16,13 @@ class Inserter:
         x, y = 0, 0
 
         enc = []
-        for i in range(len(message)):
+        bytear = []
+        for i in message:
+            for j in i.encode("utf-8"):
+                bytear.append(j)
+        for i in range(len(bytear)):
             key_c = basekey[i % len(basekey)]
-            enc_c = chr(((ord(message[i]) + ord(key_c))) % 256)
+            enc_c = chr(((bytear[i] + ord(key_c))) % 256)
             enc.append(enc_c)
         message = base64.urlsafe_b64encode("".join(enc).encode()).decode()
 
@@ -53,7 +57,7 @@ class Inserter:
             x = (x + 1) % shapex
             if x == 0:
                 y += 1
-        for char in message:
+        for char in bytear:
             blank = rand.randint(0, 5)
             for i in range(8 * blank):
                 current = (img[x][y][0] & (~1))
@@ -61,7 +65,7 @@ class Inserter:
                 x = ((x + 1) % shapex)
                 if x == 0:
                     y += 1
-            num = ord(char)
+            num = char
             num = num ^ initaliser
             initaliser = num
             num = convert.dectobin(num)
