@@ -35,10 +35,10 @@ class Retrive:
             x = ((x + 1) % shapex)
             if x == 0:
                 y += 1
-        ans = ""
+        ans = b""
         for i in currentKey:
-            ans += chr(i)
-        if key != ans:
+            ans += i.to_bytes(1, "big")
+        if key != ans.decode():
             print("wrong key")
             return
         currentKey = []
@@ -62,13 +62,7 @@ class Retrive:
             x = ((x + 1) % shapex)
             if x == 0:
                 y += 1
-        ans = ""
+        ans = b""
         for i in currentKey:
-            ans += chr(i)
-        dec = []
-        enc = base64.urlsafe_b64decode(ans).decode()
-        for i in range(len(enc)):
-            key_c = basekey[i % len(basekey)]
-            dec_c = chr((256 + ord(enc[i]) - ord(key_c)) % 256)
-            dec.append(dec_c)
-        return "".join(dec)
+            ans += i.to_bytes(1, "big")
+        return ans.decode("utf-8")
