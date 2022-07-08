@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import tkinter
 from tkinter import filedialog, ttk
 from tkinter.constants import LEFT, RIGHT
