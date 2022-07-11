@@ -1,4 +1,3 @@
-import base64
 import random as rand
 import cv2
 import converter
@@ -20,11 +19,7 @@ class Inserter:
         for i in message:
             for j in i.encode("utf-8"):
                 bytear.append(j)
-        for i in range(len(bytear)):
-            key_c = basekey[i % len(basekey)]
-            enc_c = chr(((bytear[i] + ord(key_c))) % 256)
-            enc.append(enc_c)
-        message = base64.urlsafe_b64encode("".join(enc).encode()).decode()
+        
 
         if shapex * shapey <= (12 * len(message)):
             raise imgerror.imagenNotEnough()
