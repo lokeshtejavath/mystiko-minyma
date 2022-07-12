@@ -1,66 +1,68 @@
 import cv2
-
 import converter
+from imgerror import invaildKey, messageCantBeRetrieved, imageNotFound
 
 
 class Retrive:
 
     def retriver(self, key: str, image: str, basekey: str):
+        if len(key) != 25:
+            raise invaildKey
         initaliser = int(key[0:3])
         img = cv2.imread(image)
+        if img is None:
+            raise imageNotFound
         shapex = img.shape[0]
         shapey = img.shape[1]
         x, y = 0, 0
         convert = converter.converter()
-        currentKey = []
-        current = ""
-        counter = 0
-        while counter != 8:
+        baseKeyindex = 0
+        valuesFound = []
+        binaryFound = ""
+        whiteNoiseLength = 0
+        while whiteNoiseLength != 8:
             if img[x][y][0] & 1:
-                current += "1"
+                binaryFound += "1"
             else:
-                current += "0"
-            if len(current) == 8:
-                num = convert.bintodec(current)
+                binaryFound += "0"
+            if len(binaryFound) == 8:
+                num = convert.bintodec(binaryFound)
                 if num == 0:
-                    counter += 1
-                    current = ""
+                    whiteNoiseLength += 1
+                    binaryFound = ""
                 else:
-                    counter = 0
-                    currentKey.append(initaliser ^ num)
-                    initaliser = num
-                    current = ""
+                    whiteNoiseLength = 0
+                    value = initaliser ^ num
+                    value = value ^ basekey[baseKeyindex]
+                    baseKeyindex = (baseKeyindex + 1) % len(basekey)
             x = ((x + 1) % shapex)
             if x == 0:
                 y += 1
-        ans = b""
-        for i in currentKey:
-            ans += i.to_bytes(1, "big")
-        if key != ans.decode():
-            print("wrong key")
-            return
-        currentKey = []
-        counter = 0
-        current = ""
-        while counter != 8:
+        binaryFound = ""
+        whiteNoiseLength = 0
+        while whiteNoiseLength != 8:
             if img[x][y][0] & 1:
-                current += "1"
+                binaryFound += "1"
             else:
-                current += "0"
-            if len(current) == 8:
-                num = convert.bintodec(current)
+                binaryFound += "0"
+            if len(binaryFound) == 8:
+                num = convert.bintodec(binaryFound)
                 if num == 0:
-                    counter += 1
-                    current = ""
+                    whiteNoiseLength += 1
+                    binaryFound = ""
                 else:
-                    counter = 0
-                    currentKey.append(initaliser ^ num)
-                    initaliser = num
-                    current = ""
+                    whiteNoiseLength = 0
+                    value = initaliser ^ num
+                    value = value ^ basekey[baseKeyindex]
+                    baseKeyindex = (baseKeyindex + 1) % len(basekey)
+                    valuesFound.append(value)
             x = ((x + 1) % shapex)
             if x == 0:
                 y += 1
-        ans = b""
-        for i in currentKey:
-            ans += i.to_bytes(1, "big")
-        return ans.decode("utf-8")
+        try:
+            ans = b""
+            for i in valuesFound:
+                ans += i.to_bytes(1, "big")
+            return ans.decode()
+        except Exception as e:
+            return None
