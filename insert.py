@@ -14,14 +14,13 @@ class Inserter:
         shapey = img.shape[1]
         x, y = 0, 0
 
-        enc = []
         bytear = []
         for i in message:
             for j in i.encode("utf-8"):
                 bytear.append(j)
         
 
-        if shapex * shapey <= (12 * len(message)):
+        if shapex * shapey <= (12 * len(bytear)):
             raise imgerror.imagenNotEnough()
         convert = converter.converter()
         for char in key:
@@ -83,3 +82,5 @@ class Inserter:
         cv2.imwrite(name, img)
 
         return
+
+export = Inserter()
