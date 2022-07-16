@@ -27,6 +27,7 @@ class Inserter:
         for glyph in basekey:
             for byte in glyph.encode("utf-8"):
                 baseBytes.append(byte)
+        print(baseBytes)
 
         if shapex * shapey <= (12 * len(messageBytes+keyBytes)):
             raise imgerror.imagenNotEnough()
@@ -75,6 +76,7 @@ class Inserter:
             byteToInsert = byteToInsert ^ initaliser
             initaliser = byteToInsert
             baseKeyIndex = (baseKeyIndex + 1) % len(baseBytes)
+            print(byteToInsert)
             binaryToInsert = convert.dectobin(byteToInsert)
             for bit in binaryToInsert:
                 if bit == "0":
@@ -93,6 +95,7 @@ class Inserter:
             x = (x + 1) % shapex
             if x == 0:
                 y += 1
+        print(x, y)
         cv2.imwrite(name, img)
 
         return
