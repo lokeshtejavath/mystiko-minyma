@@ -24,7 +24,7 @@ class Retrive:
         for glyph in basekey:
             for byte in glyph.encode("utf-8"):
                 baseBytes.append(byte)
-        print(baseBytes)
+        # print(baseBytes)
         while whiteNoiseLength != 8:
             if img[x][y][0] & 1:
                 binaryFound += "1"
@@ -36,11 +36,15 @@ class Retrive:
                     whiteNoiseLength += 1
                     binaryFound = ""
                 else:
+                    # print((num))
+                    if(num == 255):
+                        num = 0
                     whiteNoiseLength = 0
+                    storenumber = num
                     value = initaliser ^ num
+                    initaliser = storenumber
                     value = value ^ baseBytes[baseKeyindex]
                     baseKeyindex = (baseKeyindex + 1) % len(baseBytes)
-                    initaliser = value
                     binaryFound = ""
             x = ((x + 1) % shapex)
             if x == 0:
@@ -50,6 +54,7 @@ class Retrive:
                 return "fcuk"
         binaryFound = ""
         whiteNoiseLength = 0
+        # print(initaliser, "initaliser")
         while whiteNoiseLength != 8:
             if img[x][y][0] & 1:
                 binaryFound += "1"
@@ -61,24 +66,28 @@ class Retrive:
                     whiteNoiseLength += 1
                     binaryFound = ""
                 else:
+                    # print((num))
+                    if(num == 255):
+                        num = 0
                     whiteNoiseLength = 0
+                    storenumber = num
                     value = initaliser ^ num
+                    initaliser = storenumber
                     value = value ^ baseBytes[baseKeyindex]
                     baseKeyindex = (baseKeyindex + 1) % len(baseBytes)
                     valuesFound.append(value)
                     binaryFound = ""
-                    initaliser = value
             x = ((x + 1) % shapex)
             if x == 0:
                 y += 1
 
-        print(x, y)
+        # print(x, y)
         try:
             ans = b""
             for i in valuesFound:
-                print(i)
+                # print(i)
                 ans += i.to_bytes(1, "big")
-            print(ans.decode("utf-8"), end="dededed\n")
+            # print(ans.decode("utf-8"), end="\n")
             return ans.decode("utf-8")
         except Exception as e:
             return None

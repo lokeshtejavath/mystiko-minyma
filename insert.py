@@ -27,12 +27,13 @@ class Inserter:
         for glyph in basekey:
             for byte in glyph.encode("utf-8"):
                 baseBytes.append(byte)
-        print(baseBytes)
+        # print(baseBytes)
 
         if shapex * shapey <= (12 * len(messageBytes+keyBytes)):
             raise imgerror.imagenNotEnough()
         convert = converter.converter()
         baseKeyIndex = 0
+        # print(messageBytes)
         for keyElement in keyBytes:
             whiteNoiseLength = rand.randint(0, 5)
             for i in range(8 * whiteNoiseLength):
@@ -45,7 +46,10 @@ class Inserter:
             byteToInsert = byteToInsert ^ initaliser
             initaliser = byteToInsert
             baseKeyIndex = (baseKeyIndex + 1) % len(baseBytes)
+            if(byteToInsert == 0):
+                byteToInsert = 255
             binaryToInsert = convert.dectobin(byteToInsert)
+            # print(byteToInsert)
             for bit in binaryToInsert:
                 if bit == "0":
                     currentPixel = img[x][y][0] & (~1)
@@ -64,6 +68,7 @@ class Inserter:
             if x == 0:
                 y += 1
         # Message now to be inserted
+        # print(initaliser, "initaliser")
         for messageElement in messageBytes:
             whiteNoiseLength = rand.randint(0, 5)
             for i in range(8 * whiteNoiseLength):
@@ -76,8 +81,11 @@ class Inserter:
             byteToInsert = byteToInsert ^ initaliser
             initaliser = byteToInsert
             baseKeyIndex = (baseKeyIndex + 1) % len(baseBytes)
-            print(byteToInsert)
+            # print(byteToInsert)
+            if(byteToInsert == 0):
+                byteToInsert = 255
             binaryToInsert = convert.dectobin(byteToInsert)
+            # print(binaryToInsert)
             for bit in binaryToInsert:
                 if bit == "0":
                     currentPixel = img[x][y][0] & (~1)
@@ -95,7 +103,7 @@ class Inserter:
             x = (x + 1) % shapex
             if x == 0:
                 y += 1
-        print(x, y)
+        # print(x, y)
         cv2.imwrite(name, img)
 
         return
