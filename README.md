@@ -118,7 +118,7 @@ lokeshtejavath@yahoo.com
 ## Authors
 [Lokesh Tejavath](https://github.com/lokeshtejavath)
 
-[Abhiram Nallama](https://github.com/Abhiram8910)
+[Abhiram Nallamala](https://github.com/Abhiram8910)
 
 [Waseem Syed](https://github.com/sw2812)
 
