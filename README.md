@@ -115,9 +115,11 @@ Flag | Description
 ## Contact
 lokeshtejavath@yahoo.com
 
-## Authors
+## Author
 [Lokesh Tejavath](https://github.com/lokeshtejavath)
 
+
+## Ideation
 [Abhiram Nallamala](https://github.com/Abhiram8910)
 
 [Waseem Syed](https://github.com/sw2812)
